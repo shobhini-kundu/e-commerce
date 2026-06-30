@@ -3,8 +3,9 @@ import React from 'react'
 import "./Footer.css"
 import { TiSocialFacebook } from 'react-icons/ti';
 import { RiInstagramLine } from 'react-icons/ri';
+import { footerData } from '@/data/footerData';
 const Footer:React.FC = () => {
-  return (
+return (
     <>
     <div className="footer_section">
         <div className="footer_top">
@@ -28,6 +29,18 @@ const Footer:React.FC = () => {
 
             </div>
             <div className="page_links">
+                {footerData.map((section, index) => (
+                    <div className="link_column" key = {index}>
+                        <div className="column_title">{section.title}</div>
+                        <ul>
+                            {section.urlData.map((link,i) => (
+                                <li key ={i}>
+                                    <a href = {link.urlLink}>{link.urlTitle}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
 
             </div>
 
@@ -39,7 +52,7 @@ const Footer:React.FC = () => {
         </div>
     </div>
     </>
-  )
+)
 }
 
 export default Footer
