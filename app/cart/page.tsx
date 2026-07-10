@@ -1,4 +1,4 @@
-import CartSection from '@/components/cartComponent/CartSection'
+import CartSection from '@/components/cartComponents/CartSection'
 import Footer from '@/components/layouts/Footer'
 import Header from '@/components/layouts/Header'
 import React from 'react'

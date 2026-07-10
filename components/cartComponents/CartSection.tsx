@@ -164,7 +164,7 @@ const CartSection: React.FC = () => {
 
             <button
               className="checkout_btn"
-              onClick={() => navigate.push("/src/order")}
+              onClick={() => navigate.push("/checkout")}
             >
               Proceed To Checkout
             </button>
