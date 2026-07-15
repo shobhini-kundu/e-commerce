@@ -1,65 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import "./CartSection.css";
 import { useRouter } from "next/navigation";
-import { ICartItem } from "@/interfaces/cart";
-
-const cartData: ICartItem = {
-  id: 1,
-  title: "Premium Noise-Cancelling Headphones",
-  category: "Electronics",
-  price: 189.99,
-  oldPrice: 249.99,
-  rating: 4.8,
-  reviews: 124,
-  badge: "SALE",
-  image:
-    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80",
-  quantity: 2,
-};
+import { useCart } from "@/context/CartContext";
 
 const CartSection: React.FC = () => {
-  const [cartItems, setCartItems] = useState<ICartItem[]>([cartData]);
+  const {
+    cartItems,
+    increaseQuantity,
+    decreaseQuantity,
+    removeProduct,
+    isUpdating,
+  } = useCart();
   const navigate = useRouter();
-
-  const saveCart = (updatedCart: ICartItem[]) => {
-    setCartItems(updatedCart);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
-  };
-
-  const increaseQuantity = (id: number) => {
-    const updatedCart = cartItems.map((item) =>
-      item.id === id
-        ? {
-            ...item,
-            quantity: item.quantity + 1,
-          }
-        : item,
-    );
-
-    saveCart(updatedCart);
-  };
-
-  const decreaseQuantity = (id: number) => {
-    const updatedCart = cartItems
-      .map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity: item.quantity - 1,
-            }
-          : item,
-      )
-      .filter((item) => item.quantity > 0);
-
-    saveCart(updatedCart);
-  };
-
-  const removeProduct = (id: number) => {
-    const updatedCart = cartItems.filter((item) => item.id !== id);
-    saveCart(updatedCart);
-  };
 
   const subtotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -114,11 +67,21 @@ const CartSection: React.FC = () => {
                 </div>
 
                 <div className="cart_quantity">
-                  <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                  <button
+                    onClick={() => decreaseQuantity(item.id)}
+                    disabled={isUpdating}
+                  >
+                    -
+                  </button>
 
                   <span>{item.quantity}</span>
 
-                  <button onClick={() => increaseQuantity(item.id)}>+</button>
+                  <button
+                    onClick={() => increaseQuantity(item.id)}
+                    disabled={isUpdating}
+                  >
+                    +
+                  </button>
                 </div>
 
                 <div className="cart_total">
@@ -128,6 +91,7 @@ const CartSection: React.FC = () => {
                 <button
                   className="remove_btn"
                   onClick={() => removeProduct(item.id)}
+                  disabled={isUpdating}
                 >
                   Remove
                 </button>

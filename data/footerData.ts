@@ -4,14 +4,15 @@ export const footerData: IFooterLink[] = [
     {
         title:"Browse",
         urlData:[
+             {
+                urlTitle:'Orders ',
+                urlLink:'/orders',
+            },   
             {
                 urlTitle:'Store Locations',
                 urlLink:'#'
             },
-            {
-                urlTitle:'Delivery Estimates ',
-                urlLink:'#'
-            },            {
+                    {
                 urlTitle:' Careers',
                 urlLink:'#'
             }
