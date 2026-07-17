@@ -1,0 +1,47 @@
+.main_banner{
+    display: flex;
+    min-height: 50vh;
+    height: auto;
+    width: 100%;
+    padding:  100px 100px;
+    gap: 100px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#433cbd ;
+    color: white;
+
+.banner_left{
+flex: 1;
+
+    .sub_title{
+        color: #aaabac;
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 10px;
+    }
+    .title{
+        font-size:45px;
+        font-weight: 900;
+        color: white;
+        max-width: 100%;
+        text-wrap: wrap;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+    .description{
+        font-size: 18px;
+        color: #dcdcdc;
+    }
+}
+.banner_right{
+    flex: 1;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%; */
+    .hero_image{
+        border-radius: 15px;
+    }
+}
+}
